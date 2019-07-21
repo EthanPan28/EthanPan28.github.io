@@ -262,6 +262,140 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/7-20note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="潘 志诚">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhicheng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/20/7-20note/" itemprop="url">Java核心技术卷的学习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-20T21:57:22+08:00">
+                2019-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Java核心技术卷学习（一）"><a href="#Java核心技术卷学习（一）" class="headerlink" title="Java核心技术卷学习（一）"></a>Java核心技术卷学习（一）</h1><blockquote>
+<p>2019年7月20日22:57:48</p>
+<p>今天很难得的学习到了11点，如果觉得合适的话以后要为了学习的效率开始晚起晚睡，学习的效果最佳，能用代码做自己想做的事情，这是学习的目标。</p>
+</blockquote>
+<h2 id="新学到的概念"><a href="#新学到的概念" class="headerlink" title="新学到的概念"></a>新学到的概念</h2><p><strong>applet</strong>是指网页上运行的java程序</p>
+<p><strong>Spring</strong> 框架是之后需要了解的东西</p>
+<p>Java中面向过程的编程为了让自己熟悉一下写程序的感觉吧，大部分时候要自己调各种库，熟悉解决各种问题才是最值得长进的部分。</p>
+<p>以前学习过但是忘掉了类之间的关系，重新温习一下：</p>
+<ul>
+<li>依赖：uses a</li>
+<li>聚合：has a</li>
+<li>继承：is a</li>
+</ul>
+<h2 id="代码练习"><a href="#代码练习" class="headerlink" title="代码练习"></a>代码练习</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">这是一份练习的代码</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="keyword">import</span> java.io.Console;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01hexin</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 简单利用几个String的api</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        String str = <span class="string">"I am Pan Zhicheng"</span>;</span><br><span class="line">        String str2 = <span class="string">"I am Pan Zhicheng"</span>;</span><br><span class="line">        System.out.println(str.charAt(<span class="number">10</span>));</span><br><span class="line">        System.out.println(str.compareTo(str2));</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * StringBuilder</span></span><br><span class="line"><span class="comment">         * Scanner输入</span></span><br><span class="line"><span class="comment">         * 字符串碎片化组合起来</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        System.out.println(<span class="string">"输入一个字符串："</span>);</span><br><span class="line">        Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        String ch = sc.next();</span><br><span class="line">        StringBuilder builder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        builder.append(ch);</span><br><span class="line">        builder.append(str);</span><br><span class="line">        String completedString = builder.toString();</span><br><span class="line">        System.out.println(<span class="string">"完整的字符串是："</span> + completedString);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"输入一个年龄："</span>);</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> age = in.nextInt();</span><br><span class="line">        System.out.println(<span class="string">"你的年龄是"</span> + age);</span><br><span class="line"></span><br><span class="line"><span class="comment">//        //读取一个密码应该这样读</span></span><br><span class="line"><span class="comment">//        Console console = System.console();</span></span><br><span class="line"><span class="comment">//        String username = console.readLine("User name:");</span></span><br><span class="line"><span class="comment">//        char[] passwd = console.readPassword("Password:");</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//格式化输入有点像C</span></span><br><span class="line">        <span class="keyword">double</span> x = <span class="number">3.3333</span>;</span><br><span class="line">        System.out.printf(<span class="string">"Hello, %s"</span>,str);</span><br><span class="line">        System.out.printf(<span class="string">"%8.2f"</span>, x);</span><br><span class="line">        System.out.printf(<span class="string">"%tc"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">        System.out.printf(<span class="string">"%1$s %2$tB %2$te, %2$tY"</span>,<span class="string">"Due Date:"</span>,<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/7-19note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -575,7 +709,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
