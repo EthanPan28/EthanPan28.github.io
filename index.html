@@ -262,6 +262,540 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/13/8-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="潘 志诚">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhicheng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/13/8-14/" itemprop="url">8-14</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-13T09:46:29+08:00">
+                2019-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/13/8-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="潘 志诚">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhicheng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/13/8-13/" itemprop="url">8-13</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-13T09:45:12+08:00">
+                2019-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h4 id="实现内容"><a href="#实现内容" class="headerlink" title="实现内容"></a>实现内容</h4><p>数据源的区域已经被划分为4个分区。任意给定的（左下角经纬度，右下角经纬度）矩形范围中，在300s的窗口时间每10s滑动一次，实时统计区域内点的个数。</p>
+<h4 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h4><p>确定了数据流之后，对这个数据流分配时间戳和水位然后进行按照我们的“需求”分区，分区的参数是“Partitioner”以及“KeySelector”然后取得相应分区的slot号最后设置timeWindow输出，过程中每一个算子的具体实现都经过了自定义的重写。</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p><img src="C:%5CUsers%5CEthan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565660046225.png" alt="输入"></p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p><img src="C:%5CUsers%5CEthan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565620899590.png" alt="各区域实时点的个数"></p>
+<h4 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h4><p><img src="C:%5CUsers%5CEthan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565660164035.png" alt="1565660164035"></p>
+<h4 id="实现过程的问题"><a href="#实现过程的问题" class="headerlink" title="实现过程的问题"></a>实现过程的问题</h4><ul>
+<li>对于Java高级特性的生疏，Flink编程中经常以一系列的算子链的形式完成操作，即对于一个数据流一直“点”到底，过程中都是在参数列表里再以内部的形式实现我们的目的，对这种编程很陌生。</li>
+<li>下一步在apply中加范围的功能</li>
+</ul>
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><p>输入：1个参数</p>
+<p>输出：1个参数</p>
+<h4 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h4><p>输入一个参数，产生0、1或多个输出</p>
+<p>例如：<code>str =&gt; str.split(&quot; &quot;)</code> 是将句子中的单词拆分出来</p>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><p>结算每个元素得到布尔值，并返回布尔值为true的元素</p>
+<p>例如：<code>dataStream.filter { _ != 0}</code></p>
+<h4 id="keyBy"><a href="#keyBy" class="headerlink" title="keyBy"></a>keyBy</h4><p>逻辑地将一个流分区，每个分区包含具有相同key的元素，在内部以hash的形式实现</p>
+<p>注意：以下内容无法作为key</p>
+<ul>
+<li>POJO类，但是没有重写hashCode()函数并且依赖Object的hashCode()实现</li>
+<li>任意形式的数组类型</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataStream.keyBy(<span class="number">0</span>) <span class="comment">// 通过元组的第一个字段进行分组</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a>Reduce</h4><p>合并当前的元素和上次规约的结果，产生一个新的值</p>
+<h4 id="Fold"><a href="#Fold" class="headerlink" title="Fold"></a>Fold</h4><p>一个有初始值的分组数据流的滚动折叠操作，合并当前元素和前一次折叠操作的结果，并产生一个新的值。</p>
+<p>例如：</p>
+<p><code>val result: DataStream[String] = keyedStream.fold(&quot;fold&quot;)((str, i) =&gt; { str + &quot;-&quot; + i})</code></p>
+<p> 输入(1, 2, 3, 4, 5)，输出”fold-1”, “fold-1-2”, “fold-1-2-3”, …</p>
+<h4 id="Aggregations"><a href="#Aggregations" class="headerlink" title="Aggregations"></a>Aggregations</h4><p>min：返回最小值</p>
+<p>minBy：返回的是其字段中包含最小值的元组</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">keyedStream.sum(<span class="number">0</span>)</span><br><span class="line">keyedStream.min(<span class="number">0</span>)</span><br><span class="line">keyedStream.maxBy(<span class="string">"key"</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h4><p><strong>// KeyedStream → WindowedStream</strong></p>
+<p>这是在一个分区的keyedStream中定义的，进行对数据的分组</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataStream.keyBy(<span class="number">0</span>).window(<span class="type">TumblingEventTimeWindows</span>.of(<span class="type">Time</span>.seconds(<span class="number">5</span>))) <span class="comment">// 最近5秒钟的数据</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="WindowAll"><a href="#WindowAll" class="headerlink" title="WindowAll"></a>WindowAll</h4><p><strong>// DataStream → AllWindowedStream</strong></p>
+<p>这个和window的区别在于，针对DataStream类型</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataStream.windowAll(<span class="type">TumblingEventTimeWindows</span>.of(<span class="type">Time</span>.seconds(<span class="number">5</span>))) <span class="comment">// 最近5秒钟的数据</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Window-Apply"><a href="#Window-Apply" class="headerlink" title="Window Apply"></a>Window Apply</h4><p><strong>// (All)WindowedStream → DataStream</strong></p>
+<h4 id="Window-Reduce、Fold、Aggregation"><a href="#Window-Reduce、Fold、Aggregation" class="headerlink" title="Window Reduce、Fold、Aggregation"></a>Window Reduce、Fold、Aggregation</h4><p>功能和原来一样，不过是在窗口上</p>
+<h4 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h4><p>把DataStream合并起来</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataStream.union(otherStream1, otherStream2, ...)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Window-Join"><a href="#Window-Join" class="headerlink" title="Window Join"></a>Window Join</h4><p>根据一个给定的key和window对两个DataStream做join操作</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dataStream.join(otherStream)</span><br><span class="line">    .where(&lt;key selector&gt;).equalTo(&lt;key selector&gt;)</span><br><span class="line">    .window(<span class="type">TumblingEventTimeWindows</span>.of(<span class="type">Time</span>.seconds(<span class="number">3</span>)))</span><br><span class="line">    .apply &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p>DataSink消费DataStream中的数据</p>
+<p>​     </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/02/8-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="潘 志诚">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhicheng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/02/8-2/" itemprop="url">基于Flink的全端亿级用户画像系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-02T15:41:19+08:00">
+                2019-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>2019-8-2 15:42:21</p>
+</blockquote>
+<p>*<em>Flink + SpringBoot + SpringCloud + Vue.js *</em></p>
+<p><strong>逻辑回归 + Kmeans + TF-IDF等</strong></p>
+<p><strong>Hadoop + HBase + MongoDb + Kafka + Flume</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/7-24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="潘 志诚">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhicheng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/24/7-24/" itemprop="url">一个用户逻辑的Flink Demo实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T13:20:33+08:00">
+                2019-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>编写Flink程序的时候即使是Java程序也需要Scala依赖的，比如调用的Table接口都是用Scala写的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/7-22/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -965,7 +1499,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
